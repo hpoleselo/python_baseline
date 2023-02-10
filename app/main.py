@@ -6,10 +6,7 @@ from utils.custom_logger import setup_custom_logger
 logger = setup_custom_logger('api_logger')
 
 description = """
-# Dashboard Interface API
-API that provides interface with the Dashboard, like:
-- Inserting Project to be tracked.
-- Get active projects array.
+# Example API
 """
 
 app = FastAPI(description=description,
