@@ -1,4 +1,4 @@
-from fastapi import FastAPI, Response, status, HTTPException
+from fastapi import FastAPI, Response, status, HTTPException, File, UploadFile, Form
 from schemas.post_request import PostRequestPayload
 from utils.custom_logger import setup_custom_logger
 
@@ -37,4 +37,13 @@ def insert_new_data_to_somewhere(body: PostRequestPayload):
         return "Ok"
     else:
         return "Not ok."
+
+@app.post('/file_log_upload')
+async def create_upload_file(uploader_name: str = Form(...),
+                             file : UploadFile = File(default=None)):
+                             
+    file_location = f'images/{uploader_name}_{file.filename}'
+    logger.info(f"File will be outputted to {file_location}")
+    return "Ok."
+    
         
