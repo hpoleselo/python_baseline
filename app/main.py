@@ -1,6 +1,7 @@
 from fastapi import FastAPI, Response, status, HTTPException, File, UploadFile, Form
 from schemas.post_request import PostRequestPayload
 from utils.custom_logger import setup_custom_logger
+from config import configuration
 
 
 logger = setup_custom_logger('api_logger')
@@ -8,6 +9,9 @@ logger = setup_custom_logger('api_logger')
 description = """
 # Example API
 """
+
+# This is set in the config package in the yaml file
+isLocalTesting = configuration['local_testing']
 
 app = FastAPI(description=description,
               title="FastAPI Example",

@@ -1,0 +1,4 @@
+'local_testing': True
+
+# GCP Credentials apth
+'credentials_path' : 'PATH_TO_FILE.json'
