@@ -13,6 +13,22 @@ description = """
 # This is set in the config package in the yaml file
 isLocalTesting = configuration['local_testing']
 
+def check_credentials_from_api_wrt_gcp(gcp_project_name: str,
+                                       gcp_table_name: str):
+    """
+    Checks if given API is able to authenticate with GCP.
+    """
+    from google.api_core.exceptions import NotFound, BadRequest
+    from google.auth.exceptions import DefaultCredentialsError
+    
+    try:
+        table = 'project_metrics_daily_new'
+        bigquery_client, project_id, dataset_id, table_name, table_id = big_query_config(table)
+    except DefaultCredentialsError as e:
+        logger.error(f"As soon as the API started it could not retrieve credentials from GCP. {e}")
+
+check_credentials_from_api_wrt_gcp()
+
 app = FastAPI(description=description,
               title="FastAPI Example",
               version="0.0.1",
